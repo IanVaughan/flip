@@ -16,6 +16,5 @@ module Flip
     def description
       options[:description]
     end
-
   end
 end

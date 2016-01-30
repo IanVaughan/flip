@@ -5,9 +5,7 @@ class ControllerWithFlipFilters
 end
 
 describe ControllerWithFlipFilters do
-
   describe ".require_feature" do
-
     it "adds before_filter without options" do
       ControllerWithFlipFilters.tap do |klass|
         klass.should_receive(:before_filter).with({})
@@ -21,7 +19,5 @@ describe ControllerWithFlipFilters do
         klass.send(:require_feature, :testable, only: [ :show ])
       end
     end
-
   end
-
 end

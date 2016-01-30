@@ -13,6 +13,5 @@ module Flip
       super unless method =~ %r{^(.*)\?$}
       FeatureSet.instance.on? $1.to_sym
     end
-
   end
 end

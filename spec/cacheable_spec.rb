@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Flip::Cacheable do
-
   subject(:model_class) do
     class Sample
       attr_accessor :key
@@ -45,5 +44,4 @@ describe Flip::Cacheable do
       specify { model_class.feature_cache.size == 3}
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Flip::DatabaseStrategy do
-
   let(:definition) { double("definition", key: "one") }
   let(:strategy) { Flip::DatabaseStrategy.new(model_klass) }
   let(:model_klass) do
@@ -51,8 +50,10 @@ describe Flip::DatabaseStrategy do
         expect(strategy.knows?(definition)).to eq(false)
       end
     end
+
     context "for known key" do
       let(:db_result) { [disabled_record] }
+
       it "returns false" do
         expect(strategy.knows?(definition)).to eq(true)
       end
@@ -61,8 +62,10 @@ describe Flip::DatabaseStrategy do
 
   describe "#on? with feature cache" do
     before { model_klass.start_feature_cache }
+
     context "for an enabled record" do
       let(:db_result) { [enabled_record] }
+
       it "returns true" do
         expect(strategy.on?(definition)).to eq(true)
       end
@@ -72,12 +75,15 @@ describe Flip::DatabaseStrategy do
   describe "#on?" do
     context "for an enabled record" do
       let(:db_result) { [enabled_record] }
+
       it "returns true" do
         expect(strategy.on?(definition)).to eq(true)
       end
     end
+
     context "for a disabled record" do
       let(:db_result) { [disabled_record] }
+
       it "returns true" do
         expect(strategy.on?(definition)).to eq(false)
       end
@@ -91,6 +97,7 @@ describe Flip::DatabaseStrategy do
       expect(disabled_record).to receive(:save!)
       strategy.switch! :one, true
     end
+
     it "can switch a feature off" do
       expect(db_result).to receive(:first_or_initialize).and_return(enabled_record)
       expect(enabled_record).to receive(:enabled=).with(false)
@@ -101,10 +108,10 @@ describe Flip::DatabaseStrategy do
 
   describe "#delete!" do
     let(:db_result) { [enabled_record] }
+
     it "can delete a feature record" do
       enabled_record.should_receive(:try).with(:destroy)
       strategy.delete! :one
     end
   end
-
 end

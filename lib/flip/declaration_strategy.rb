@@ -2,7 +2,6 @@
 # May be boolean or a Proc to be passed the definition.
 module Flip
   class DeclarationStrategy < AbstractStrategy
-
     def description
       "The default status declared with the feature."
     end
@@ -15,6 +14,5 @@ module Flip
       default = definition.options[:default]
       default.is_a?(Proc) ? default.call(definition) : default
     end
-
   end
 end

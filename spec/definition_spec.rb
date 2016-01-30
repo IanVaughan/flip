@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Flip::Definition do
-
   subject { Flip::Definition.new :the_key, description: "The description" }
 
   [:key, :name, :to_s].each do |method|
@@ -15,5 +14,4 @@ describe Flip::Definition do
     subject { Flip::Definition.new :the_key }
     its(:description) { should == "The key." }
   end
-
 end

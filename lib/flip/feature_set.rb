@@ -1,6 +1,5 @@
 module Flip
   class FeatureSet
-
     def self.instance
       @instance ||= self.new
     end
@@ -52,6 +51,5 @@ module Flip
     def strategies
       @strategies.values
     end
-
   end
 end

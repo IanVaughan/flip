@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Flip do
-
   before(:all) do
     Class.new do
       extend Flip::Declarable
@@ -20,6 +19,7 @@ describe Flip do
     it "returns true for enabled features" do
       Flip.on?(:one).should be true
     end
+
     it "returns false for disabled features" do
       Flip.on?(:two).should be false
     end
@@ -29,5 +29,4 @@ describe Flip do
     its(:one?) { should be true }
     its(:two?) { should be false }
   end
-
 end
