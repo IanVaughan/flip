@@ -6,7 +6,7 @@ end
 
 class TrueStrategy < Flip::AbstractStrategy
   def knows?(d); true; end
-  def on?(d); true; end
+  def on?(d, p); true; end
 end
 
 describe Flip::FeatureSet do
@@ -59,6 +59,11 @@ describe Flip::FeatureSet do
     it "accepts a proc returning false" do
       subject.default = proc { false }
       subject.on?(:feature).should be false
+    end
+
+    it "accepts a proc with param" do
+      subject.default = proc { |a| a }
+      subject.on?(:feature, false).should be false
     end
   end
 

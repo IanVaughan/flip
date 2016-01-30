@@ -14,7 +14,7 @@ module Flip
       !!feature(definition)
     end
 
-    def on? definition
+    def on?(definition, param = nil)
       feature(definition).enabled?
     end
 

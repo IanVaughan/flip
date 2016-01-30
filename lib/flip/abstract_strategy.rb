@@ -11,7 +11,7 @@ module Flip
     def knows? definition; raise; end
 
     # Given the state is known, whether it is on or off.
-    def on? definition; raise; end
+    def on?(definition, param = nil); raise; end
 
     # Whether the feature can be switched on and off at runtime.
     # If true, the strategy must also respond to switch! and delete!

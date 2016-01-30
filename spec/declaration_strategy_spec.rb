@@ -25,15 +25,17 @@ describe Flip::DeclarationStrategy do
   end
 
   describe "#on? for Flip::Definition" do
-    subject { Flip::DeclarationStrategy.new.on? definition(default) }
+    subject { Flip::DeclarationStrategy.new.on? definition(default), param }
     [
       { default: true, result: true },
       { default: false, result: false },
       { default: proc { true }, result: true, name: "proc returning true" },
       { default: proc { false }, result: false, name: "proc returning false" },
+      { default: proc { |v| v }, param: false, result: false, name: "proc returning false" },
     ].each do |parameters|
       context "with default of #{parameters[:name] || parameters[:default]}" do
         let(:default) { parameters[:default] }
+        let(:param) { parameters[:param] }
         it { should == parameters[:result] }
       end
     end

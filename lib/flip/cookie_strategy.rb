@@ -10,7 +10,7 @@ module Flip
       cookies.key? cookie_name(definition)
     end
 
-    def on? definition
+    def on?(definition, param = nil)
       cookie = cookies[cookie_name(definition)]
       cookie_value = cookie.is_a?(Hash) ? cookie['value'] : cookie
       cookie_value === 'true'

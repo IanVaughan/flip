@@ -18,11 +18,12 @@ describe Flip::DatabaseStrategy do
       feature :one
       feature :two, description: "Second one."
       feature :three, default: true
+      feature :four, default: proc { |v| v }
 
       def self.all
         list = []
-        keys = ['one', 'two', 'three']
-        3.times do |i|
+        keys = ['one', 'two', 'three', 'four']
+        4.times do |i|
           list << Sample.new
           list.last.key = keys[i]
         end

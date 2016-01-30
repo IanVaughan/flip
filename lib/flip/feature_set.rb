@@ -19,10 +19,10 @@ module Flip
     end
 
     # Whether the given feature is switched on.
-    def on? key
+    def on?(key, param = nil)
       d = @definitions[key]
-      @strategies.each_value { |s| return s.on?(d) if s.knows?(d) }
-      default_for d
+      @strategies.each_value { |s| return s.on?(d, param) if s.knows?(d) }
+      default_for param
     end
 
     # Adds a feature definition to the set.
@@ -40,8 +40,8 @@ module Flip
       @strategies[klass]
     end
 
-    def default_for(definition)
-      @default.is_a?(Proc) ? @default.call(definition) : @default
+    def default_for(param = nil)
+      @default.is_a?(Proc) ? @default.call(param) : @default
     end
 
     def definitions

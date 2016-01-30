@@ -10,9 +10,9 @@ module Flip
       !definition.options[:default].nil?
     end
 
-    def on? definition
+    def on?(definition, param = false)
       default = definition.options[:default]
-      default.is_a?(Proc) ? default.call(definition) : default
+      default.is_a?(Proc) ? default.call(param) : default
     end
   end
 end

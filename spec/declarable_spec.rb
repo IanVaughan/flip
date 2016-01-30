@@ -11,6 +11,7 @@ describe Flip::Declarable do
       feature :one
       feature :two, description: "Second one."
       feature :three, default: true
+      feature :four, default: proc { |p| p }
     end
   end
 

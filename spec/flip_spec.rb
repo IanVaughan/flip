@@ -9,6 +9,7 @@ describe Flip do
       default false
       feature :one, default: true
       feature :two, default: false
+      feature :three, default: proc { |p| p }
     end
   end
 
@@ -24,10 +25,21 @@ describe Flip do
     it "returns false for disabled features" do
       Flip.on?(:two).should be false
     end
+
+    context "default proc" do
+      it "has optional param" do
+        Flip.on?(:three).should be nil
+      end
+
+      it "returns value of proc" do
+        Flip.on?(:three, true).should be true
+      end
+    end
   end
 
   describe "dynamic predicate methods" do
     its(:one?) { should be true }
     its(:two?) { should be false }
+    it { expect(Flip.three?(false)).to be false }
   end
 end
